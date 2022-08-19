@@ -1,0 +1,153 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.7001339990449331 -0.7006630077124744 -0.13741809562302448 3.4093916764452628
+  position 2.2923171327282925 19.999426282404695 8.113241533027688
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  rotation -0.5773502691896258 0.5773502691896258 0.5773502691896258 2.09
+  floorSize 10 10
+  wallHeight 0.4
+}
+Pioneer3dx {
+  hidden position_0_0 -2140.637888697435
+  hidden position_0_1 -5.348960405026972
+  hidden position_0_2 -2.0586261229027514e-07
+  hidden rotation_1 -0.9688707270966386 -0.1750564059078703 -0.17505647353311385 4.680770214035137
+  hidden position_1_0 -660.7310527369175
+  hidden rotation_2 1 0 0 5.286589824118676
+  hidden rotation_4 -0.2986565203759961 0.29865648444662957 0.9064262723105957 4.614301141528373
+  hidden rotation_9 0.5773503088078976 -0.5773503088079046 -0.577350189953067 2.0943951188548384
+  translation 0 0 0
+  rotation -0.9984617128348395 -0.04825128612256419 0.02731339214446129 1.59474
+  controller "lab_controller"
+  supervisor TRUE
+  extensionSlot [
+    Display {
+      name "grid_display"
+      width 500
+      height 500
+    }
+    Display {
+      name "sensor_display"
+      width 256
+      height 256
+    }
+    Camera {
+      translation 0 0.21 0
+      name "top_camera"
+      width 256
+      height 256
+    }
+  ]
+}
+Wall {
+  translation -2.95 0 1.95
+  rotation 0 1 0 0.785
+  name "SW Diag"
+  size 5.5 0.4 0.05
+}
+Wall {
+  translation -2 0 0
+  name "SW Diag (2)"
+  size 2 0.4 0.05
+}
+Wall {
+  translation -2.975 0 0.975
+  rotation 0 1 0 1.57
+  name "SW Diag (3)"
+  size 2 0.4 0.05
+}
+Wall {
+  translation 1 0 0
+  rotation 0 1 0 1.57
+  name "E Tee (2)"
+  size 6 0.4 0.05
+}
+Wall {
+  translation 2 0 3
+  name "E Tee (3)"
+  size 2 0.4 0.05
+}
+Wall {
+  translation 3 0 -0.25
+  name "E Tee (1)"
+  size 4 0.4 0.05
+}
+Wall {
+  translation -3 0 -1.5
+  name "W Horiz"
+  size 4 0.4 0.05
+}
+Wall {
+  translation -2 0 -3.25
+  name "NW Horiz"
+  size 2 0.4 0.05
+}
+Wall {
+  translation -1 0 -4
+  rotation 0 1 0 1.57
+  name "NW Vert"
+  size 2 0.4 0.05
+}
+Wall {
+  translation 3.5 0 -3.5
+  rotation 0 1 0 -0.785
+  name "NE Diagonal"
+  size 4.2 0.4 0.05
+}
+CardboardBox {
+  translation 2.75 0.25 1.25
+  size 0.5 0.5 0.5
+}
+CardboardBox {
+  translation 3.25 0.25 1.25
+  name "cardboard box(1)"
+  size 0.5 0.5 0.5
+}
+WoodenBox {
+  translation -4.5 0.25 -1
+  size 0.5 0.5 0.5
+}
+WoodenBox {
+  translation 0 0.25 4.75
+  name "wooden box(1)"
+  size 0.5 0.5 0.5
+}
+WoodenBox {
+  translation -0.5 0.25 4.75
+  name "wooden box(2)"
+  size 0.5 0.5 0.5
+}
+WoodenBox {
+  translation -0.25 0.25 4.25
+  name "wooden box(3)"
+  size 0.5 0.5 0.5
+}
+WoodenBox {
+  translation -0.25 0.75 4.5
+  rotation 0 1 0 0.785
+  name "wooden box(4)"
+  size 0.5 0.5 0.5
+}
+TrafficCone {
+  translation 2.75 0 -1.75
+  rotation -0.1382940034880514 0.6887240173709974 0.7117120179508007 2.72441
+}
+OilBarrel {
+  translation -4.5 0.26 2.75
+  rotation -1 9.05875e-07 3.69431e-07 -1.5707953071795862
+  height 0.528
+  radius 0.183
+}
+WoodenPalletStack {
+  translation -1.7 0 -4.1
+  rotation 0.9779121045573897 0.14779701580230997 0.14779701580230997 -1.5931253071795863
+  palletNumber 5
+}
