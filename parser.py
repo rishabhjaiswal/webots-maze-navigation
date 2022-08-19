@@ -30,7 +30,7 @@ def take(marker, lines):
         lines)                            # The lines
     return result
 
-def parse_indexed_face_set(translate, lines):
+def parse_obstacles(translate, lines):
     """
     Parse one block of 'geometry IndexedFaceSet'
     """
@@ -60,23 +60,25 @@ def parse_translate(line):
     translate = [float(x) for x in line.split()[1:4]]
     return translate
 
-def extractDataFromVRML(root):
-    indexed_face_sets = []
+def extractDataFromWBT(root):
+    obstacles = []
     translate = []
     with open(root + '.wbt') as infile:
         for line in infile:
-            if 'geometry IndexedFaceSet' in line:
-                a_set = parse_indexed_face_set(translate=translate, lines=infile)
-                indexed_face_sets.append(a_set)
-            elif 'translation' in line and line.split()[0] == 'translation':
-                translate = parse_translate(line)
+            if 'Wall' in line:
+                
+                print(line)
+            #     a_set = parse_obstacles(translate=translate, lines=infile)
+            #     obstacles.append(a_set)
+            # elif 'translation' in line and line.split()[0] == 'translation':
+            #     translate = parse_translate(line)
 
-    return indexed_face_sets
+    return obstacles
 
 
 # main
-indexed_face_sets = extractDataFromVRML(r'C:\Users\sgrjaisw\Desktop\rishabh\sample1')
-for a_set in indexed_face_sets:
-    print('vert:', a_set['vert'])
-    print('facets:', a_set['facets'])
-    print('---')
+obstacles = extractDataFromWBT(r'C:\Users\sgrjaisw\Desktop\rishabh\sample')
+# for a_set in obstacles:
+#     print('vert:', a_set['vert'])
+#     print('facets:', a_set['facets'])
+#     print('---')
