@@ -77,7 +77,7 @@ def extractDataFromWBT(root):
 
 
 # main
-obstacles = extractDataFromWBT(r'C:\Users\sgrjaisw\Desktop\rishabh\sample')
+obstacles = extractDataFromWBT(r'./sample')
 # for a_set in obstacles:
 #     print('vert:', a_set['vert'])
 #     print('facets:', a_set['facets'])
