@@ -1,0 +1,22 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.5572717957461373 -0.2754265409973408 0.7833188151577336 1.5394706566659229
+  position -2.1322966844547917 -5.2049574728657975 -7.159422813004231
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+MyFloor {
+  size 5 5
+}
+Wall {
+  translation 1.1 0 0
+  name "wall(1)"
+}
+Wall {
+  translation 0.6 0 0.149304
+}
