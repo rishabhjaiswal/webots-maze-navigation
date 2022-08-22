@@ -1,12 +1,6 @@
 import itertools
-import logging
-import os
-
-# For the next line, use logging.WARN to turn off debug print, use
-# logging.DEBUG to turn on
-logging.basicConfig(level=os.getenv('LOGLEVEL', logging.WARN))
-logger = logging.getLogger(__name__)
-
+from this import d
+import numpy as np
 
 def skip_pass(marker, lines):
     """
@@ -65,3 +59,7 @@ def extractDataFromVRML(root):
 walls = extractDataFromVRML('empty')
 for i in walls:
     print(i)
+
+grid = np.zeros([20, 20], dtype=int)
+grid[1][1] = 1
+print (grid[1][1]) 
