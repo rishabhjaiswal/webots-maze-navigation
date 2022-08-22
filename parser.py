@@ -125,7 +125,7 @@ for i in walls:
                 left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
 
                 y_index_left = 10+left_x
-                y_index_right = 10+right_x
+                y_index_right = 9+right_x
                 x_index_upper = 10 - upper
                 x_index_lower = 10 - lower
                 for i in range(y_index_left, y_index_right+1):
