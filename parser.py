@@ -1,6 +1,14 @@
 import itertools
+from math import ceil, floor
+from re import S
+import sys
 from this import d
+from tkinter import Y
+from traceback import print_tb
 import numpy as np
+import  math
+
+np.set_printoptions(threshold=sys.maxsize)
 
 def skip_pass(marker, lines):
     """
@@ -60,6 +68,46 @@ walls = extractDataFromVRML('empty')
 for i in walls:
     print(i)
 
-grid = np.zeros([20, 20], dtype=int)
-grid[1][1] = 1
-print (grid[1][1]) 
+grid = np.zeros([20, 20], dtype=float)
+# grid[10][10]=1
+print (grid) 
+
+for i in walls:
+    if i['size'][1] == 0.05: #horizontal lines
+        print(i)
+        if i['translation'][1] >= 0: #positve y
+            print('#positve y')
+            print('lower', math.ceil((i['translation'][1]-0.125)/0.5))
+            lower = math.ceil((i['translation'][1]-0.125)/0.5)
+            print('upper', math.ceil((i['translation'][1]+0.125)/0.5))
+            upper = math.ceil((i['translation'][1]+0.125)/0.5)
+            if upper == lower: #only one cell has wall passing through
+                print('upper', upper)
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+
+                y_index_left = 10+left_x
+                y_index_right = 10+right_x
+                x_index = 10 - upper
+                for i in range(y_index_left, y_index_right+1):
+                    grid[x_index][i] = 1
+                print(grid)
+            else:#two cell has wall passing through
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+
+                y_index_left = 10+left_x
+                y_index_right = 10+right_x
+                x_index_upper = 10 - upper
+                x_index_lower = 10 - lower
+                for i in range(y_index_left, y_index_right+1):
+                    grid[x_index_lower][i] = 1
+                    grid[x_index_upper][i] = 1
+                print(grid)
+            
+        else: #negative y
+            print('negative y')
+            print('lower', math.ceil((abs(i['translation'][1])-0.125)/0.5))
+            print('upper', math.ceil((abs(i['translation'][1])+0.125)/0.5))
+    elif i['size'][0] == 0.05:
+        pass
