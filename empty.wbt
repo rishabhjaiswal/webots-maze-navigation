@@ -3,20 +3,58 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.5572717957461373 -0.2754265409973408 0.7833188151577336 1.5394706566659229
-  position -2.1322966844547917 -5.2049574728657975 -7.159422813004231
+  orientation -0.43551328303829695 0.4490985768093673 0.780152964876123 1.8262097900700798
+  position 0.30684880852912466 -13.349851573609765 23.2132693473493
 }
 TexturedBackground {
 }
 TexturedBackgroundLight {
 }
-MyFloor {
-  size 5 5
+RectangleArena {
+  rotation 0 1 0 0
+  floorSize 10 10
+  wallHeight 0.4
 }
 Wall {
-  translation 1.1 0 0
-  name "wall(1)"
+  translation 0.0222356 -2 0
+  rotation 0 0 1 1.5708
+  name "wall-horizontal(3)"
+  size 0.2 4 0.4
 }
 Wall {
-  translation 0.6 0 0.149304
+  translation 0.5 1.5 0
+  rotation 0 0 1 1.5708
+  name "wall-horizontal(1)"
+  size 0.2 3 0.4
+}
+Pioneer3dx {
+  rotation 0 1 0 0
+}
+Wall {
+  translation -1 0.25 0
+  rotation 0 1 0 0
+  name "wall-vertical"
+  size 0.2 2.5 0.4
+}
+Wall {
+  translation 2 -0.25 0
+  name "wall-vertical(2)"
+  size 0.2 3.5 0.4
+}
+Wall {
+  translation -2.02524 -0.25 0
+  name "wall-vertical(3)"
+  size 0.2 3.5 0.4
+}
+Wall {
+  translation 1 -0.25 0
+  rotation 0 1 0 0
+  name "wall-vertical(1)"
+  size 0.2 1.5 0.4
+}
+Wall {
+  translation 0.0097951 -1 0
+  rotation 0 0 1 1.5708
+  name "wall-horizontal"
+  size 0.2 2 0.4
 }
