@@ -7,6 +7,9 @@ from tkinter import Y
 from traceback import print_tb
 import numpy as np
 import  math
+from matplotlib import pyplot as plt
+import numpy as np
+import networkx as nx
 
 np.set_printoptions(threshold=sys.maxsize)
 
@@ -216,4 +219,23 @@ for i in walls:
                 # print(grid)
 
 
-print(grid)
+# print(grid)
+
+# define grid graph according to the shape of a
+G = nx.grid_2d_graph(*grid.shape)
+
+
+# remove those nodes where the corresponding value is != 0
+for val,node in zip(grid.ravel(), sorted(G.nodes())):
+    if val!=0:
+        G.remove_node(node)
+
+plt.figure(figsize=(9,9))
+# coordinate rotation
+pos = {(x,y):(y,-x) for x,y in G.nodes()}
+nx.draw(G, pos=pos, 
+        node_color='grey',
+        width = 4,
+        node_size=400)
+
+plt.show()
