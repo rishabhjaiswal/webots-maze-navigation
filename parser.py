@@ -48,6 +48,8 @@ def parse_walls(lines):
             a['floorSize']=parse_values(i)
         if 'floorSize' in i:
             a['floorSize']=parse_values(i)
+        else:
+            a['floorSize'] = [1, 1]
         if 'floorTileSize' in i:
             a['floorTileSize']=parse_values(i)
         else:
@@ -74,7 +76,7 @@ def extractDataFromVRML(root):
 
 
 # main
-walls, arena_info = extractDataFromVRML('empty')
+walls, arena_info = extractDataFromVRML('test')
 for i in walls:
     print('i', i)
 print('arena_info', arena_info)
@@ -262,8 +264,8 @@ def dist(a, b):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
-path = nx.astar_path(G, (9, 9), (14, 4), heuristic=dist, weight=1)
-length = nx.astar_path_length(G, (9, 9), (14, 4), heuristic=dist, weight=1)
+path = nx.astar_path(G, (0, 0), (3, 3), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (0, 0), (3, 3), heuristic=dist, weight=1)
 print('Path:', path)
 print('Path length:', length)
 
