@@ -69,7 +69,7 @@ def extractDataFromVRML(root):
 # main
 walls = extractDataFromVRML('empty')
 for i in walls:
-    print(i)
+    print('i', i)
 
 grid = np.zeros([20, 20], dtype=float)
 
@@ -219,7 +219,7 @@ for i in walls:
                 # print(grid)
 
 
-# print(grid)
+print(grid)
 
 # define grid graph according to the shape of a
 G = nx.grid_2d_graph(*grid.shape)
@@ -229,6 +229,7 @@ G = nx.grid_2d_graph(*grid.shape)
 for val,node in zip(grid.ravel(), sorted(G.nodes())):
     if val!=0:
         G.remove_node(node)
+    
 
 plt.figure(figsize=(9,9))
 # coordinate rotation
