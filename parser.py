@@ -39,14 +39,28 @@ def parse_walls(lines):
     a={}
     for i in point_lines:
         if 'translation' in i:
-            a['translation']=parse_translate(i)
+            a['translation']=parse_values(i)
         if 'rotation' in i:
-            a['rotation']=parse_translate(i)
+            a['rotation']=parse_values(i)
         if 'size' in i:
-            a['size']=parse_translate(i)
+            a['size']=parse_values(i)
+        if 'floorSize' in i:
+            a['floorSize']=parse_values(i)
+        # if 'size' in i:
+        #     a['size']=parse_values(i)
     return a
 
-def parse_translate(line):
+def parse_arena(lines):
+    point_lines = take('}', lines)
+    a={}
+    for i in point_lines:
+        if 'floorSize' in i:
+            a['floorSize']=parse_values(i)
+        # if 'size' in i:
+        #     a['size']=parse_values(i)
+    return a
+
+def parse_values(line):
     """
     Given a line such as: "translate 5 6 7", return [5.0, 6.0, 7.0]
     """
@@ -60,14 +74,16 @@ def extractDataFromVRML(root):
             if 'Wall' in line:
                 a_set = parse_walls(lines=infile)
                 walls.append(a_set)
-    return walls
+            if 'RectangleArena' in line:
+                arena_prop = parse_arena(lines=infile)
+    return walls, arena_prop
 
 
 # main
-walls = extractDataFromVRML('empty')
+walls, floor_size = extractDataFromVRML('empty')
 for i in walls:
     print('i', i)
-
+print('floorsize', floor_size)
 grid = np.zeros([20, 20], dtype=float)
 
 for i in walls:
