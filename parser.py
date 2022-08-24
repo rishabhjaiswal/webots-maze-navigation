@@ -1,15 +1,12 @@
 import itertools
 from math import ceil, floor
-from re import S
-import sys
-from this import d
-from tkinter import Y
-from traceback import print_tb
 import numpy as np
-import  math
+import sys
+import math
 from matplotlib import pyplot as plt
 import numpy as np
 import networkx as nx
+
 
 np.set_printoptions(threshold=sys.maxsize)
 
@@ -235,8 +232,32 @@ plt.figure(figsize=(9,9))
 # coordinate rotation
 pos = {(x,y):(y,-x) for x,y in G.nodes()}
 nx.draw(G, pos=pos, 
-        node_color='grey',
+        node_color='grey', 
+        with_labels = True,
         width = 4,
         node_size=400)
 
+figManager = plt.get_current_fig_manager()
+figManager.resize(*figManager.window.maxsize())
+
+plt.show()
+
+
+def dist(a, b):
+    (x1, y1) = a
+    (x2, y2) = b
+    return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
+
+nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
+path = nx.astar_path(G, (9, 9), (14, 4), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (9, 9), (14, 4), heuristic=dist, weight=1)
+print('Path:', path)
+print('Path length:', length)
+
+pos = {(x,y):(y,-x) for x,y in G.nodes()}
+nx.draw(G, pos, with_labels = True, node_color="#f86e00")
+edge_labels = nx.get_edge_attributes(G, 1)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+figManager = plt.get_current_fig_manager()
+figManager.resize(*figManager.window.maxsize())
 plt.show()
