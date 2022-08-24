@@ -56,8 +56,10 @@ def parse_arena(lines):
     for i in point_lines:
         if 'floorSize' in i:
             a['floorSize']=parse_values(i)
-        # if 'size' in i:
-        #     a['size']=parse_values(i)
+        if 'floorTileSize' in i:
+            a['floorTileSize']=parse_values(i)
+        else:
+            a['floorTileSize'] = [0.5, 0.5]
     return a
 
 def parse_values(line):
@@ -80,7 +82,7 @@ def extractDataFromVRML(root):
 
 
 # main
-walls, floor_size = extractDataFromVRML('empty')
+walls, floor_size = extractDataFromVRML('test')
 for i in walls:
     print('i', i)
 print('floorsize', floor_size)
