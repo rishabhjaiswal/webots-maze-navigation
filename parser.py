@@ -44,18 +44,38 @@ def parse_walls(lines):
             a['rotation']=parse_values(i)
         if 'size' in i:
             a['size']=parse_values(i)
-        if 'floorSize' in i:
-            a['floorSize']=parse_values(i)
-        if 'floorSize' in i:
-            a['floorSize']=parse_values(i)
-        else:
-            a['floorSize'] = [1, 1]
-        if 'floorTileSize' in i:
-            a['floorTileSize']=parse_values(i)
-        else:
-            a['floorTileSize'] = [0.5, 0.5]
+
+        # if 'floorSize' in i:
+        #     a['floorSize']=parse_values(i)
+        # else:
+        #     a['floorSize'] = [1, 1]
+        # if 'floorTileSize' in i:
+        #     a['floorTileSize']=parse_values(i)
+        # else:
+        #     a['floorTileSize'] = [0.5, 0.5]
     return a
 
+def parse_arena_info(lines):
+    """
+    Parse one block of 'Walls'
+    """
+    point_lines = take('}', lines)
+    a={}
+    for i in point_lines:
+        if 'floorSize' in i:
+            a['floorSize']=parse_values(i)
+            
+        
+    a['floorTileSize'] = [0.5, 0.5]
+        
+    print('a[floorTileSize]', a['floorTileSize'])        
+    # if not a['floorTileSize']: 
+    #     a['floorTileSize'] = [0.5, 0.5]
+    return a
+
+
+
+    
 def parse_values(line):
     """
     Given a line such as: "translate 5 6 7", return [5.0, 6.0, 7.0]
@@ -71,12 +91,13 @@ def extractDataFromVRML(root):
                 a_set = parse_walls(lines=infile)
                 walls.append(a_set)
             if 'RectangleArena' in line:
-                arena_prop = parse_walls(lines=infile)
+                
+                arena_prop = parse_arena_info(lines=infile)
     return walls, arena_prop
 
 
 # main
-walls, arena_info = extractDataFromVRML('test')
+walls, arena_info = extractDataFromVRML('empty')
 for i in walls:
     print('i', i)
 print('arena_info', arena_info)
@@ -84,20 +105,20 @@ print('arena_info', arena_info)
 grid_size = [int(arena_info['floorSize'][0]/arena_info['floorTileSize'][0]), int(arena_info['floorSize'][1]/arena_info['floorTileSize'][1])]
 print(grid_size)
 grid = np.zeros(grid_size, dtype=float)
-
+print ('grid', grid)
 for i in walls:
     if i['size'][1] == 0.05: #horizontal lines
         
         if i['translation'][1] >= 0: #positve y
             print('#positve y')
-            print('lower', math.ceil((i['translation'][1]-0.125)/0.5))
-            lower = math.ceil((i['translation'][1]-0.125)/0.5)
-            print('upper', math.ceil((i['translation'][1]+0.125)/0.5))
-            upper = math.ceil((i['translation'][1]+0.125)/0.5)
+            print('lower', math.ceil((i['translation'][1]-0.125)/arena_info['floorTileSize'][0]))
+            lower = math.ceil((i['translation'][1]-0.125)/arena_info['floorTileSize'][0])
+            print('upper', math.ceil((i['translation'][1]+0.125)/arena_info['floorTileSize'][0]))
+            upper = math.ceil((i['translation'][1]+0.125)/arena_info['floorTileSize'][0])
             if upper == lower: #only one cell has wall passing through
                 print('upper', upper)
-                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
-                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
 
                 y_index_left = 10+left_x
                 y_index_right = 10+right_x
@@ -106,8 +127,8 @@ for i in walls:
                     grid[x_index][i] = 1
                 # print(grid)
             else:#two cell has wall passing through
-                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
-                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
 
                 y_index_left = 10+left_x
                 y_index_right = 10+right_x
@@ -120,14 +141,14 @@ for i in walls:
             
         else: #negative y
             print('negative y')
-            print('lower', math.ceil((i['translation'][1]-0.125)/0.5))
-            lower = math.ceil((i['translation'][1]-0.125)/0.5)
-            print('upper', math.ceil((i['translation'][1]+0.125)/0.5))
-            upper = math.ceil((i['translation'][1]+0.125)/0.5)
+            print('lower', math.ceil((i['translation'][1]-0.125)/arena_info['floorTileSize'][0]))
+            lower = math.ceil((i['translation'][1]-0.125)/arena_info['floorTileSize'][0])
+            print('upper', math.ceil((i['translation'][1]+0.125)/arena_info['floorTileSize'][0]))
+            upper = math.ceil((i['translation'][1]+0.125)/arena_info['floorTileSize'][0])
             if upper == lower: #only one cell has wall passing through
                 print('upper', upper)
-                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
-                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
 
                 y_index_left = 10+left_x
                 y_index_right = 9+right_x
@@ -136,13 +157,14 @@ for i in walls:
                     grid[x_index][i] = 1
                 # print(grid)
             else:#two cell has wall passing through
-                right_x = ceil((i['translation'][0]+i['size'][0]/2)/0.5)
-                left_x = floor(((i['translation'][0]-i['size'][0]/2)/0.5))
+                right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
+                left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
 
                 y_index_left = 10+left_x
                 y_index_right = 9+right_x
                 x_index_upper = 10 - upper
                 x_index_lower = 10 - lower
+                print('....................', y_index_left, y_index_right, x_index_upper, x_index_upper)
                 for i in range(y_index_left, y_index_right+1):
                     grid[x_index_lower][i] = 1
                     grid[x_index_upper][i] = 1
@@ -264,8 +286,8 @@ def dist(a, b):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
-path = nx.astar_path(G, (0, 0), (3, 3), heuristic=dist, weight=1)
-length = nx.astar_path_length(G, (0, 0), (3, 3), heuristic=dist, weight=1)
+path = nx.astar_path(G, (9, 9), (14, 4), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (9, 9), (14, 4), heuristic=dist, weight=1)
 print('Path:', path)
 print('Path length:', length)
 
