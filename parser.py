@@ -46,14 +46,6 @@ def parse_walls(lines):
             a['size']=parse_values(i)
         if 'floorSize' in i:
             a['floorSize']=parse_values(i)
-        # if 'size' in i:
-        #     a['size']=parse_values(i)
-    return a
-
-def parse_arena(lines):
-    point_lines = take('}', lines)
-    a={}
-    for i in point_lines:
         if 'floorSize' in i:
             a['floorSize']=parse_values(i)
         if 'floorTileSize' in i:
@@ -61,6 +53,18 @@ def parse_arena(lines):
         else:
             a['floorTileSize'] = [0.5, 0.5]
     return a
+
+# def parse_arena(lines):
+#     point_lines = take('}', lines)
+#     a={}
+#     for i in point_lines:
+#         if 'floorSize' in i:
+#             a['floorSize']=parse_values(i)
+#         if 'floorTileSize' in i:
+#             a['floorTileSize']=parse_values(i)
+#         else:
+#             a['floorTileSize'] = [0.5, 0.5]
+#     return a
 
 def parse_values(line):
     """
@@ -77,16 +81,19 @@ def extractDataFromVRML(root):
                 a_set = parse_walls(lines=infile)
                 walls.append(a_set)
             if 'RectangleArena' in line:
-                arena_prop = parse_arena(lines=infile)
+                arena_prop = parse_walls(lines=infile)
     return walls, arena_prop
 
 
 # main
-walls, floor_size = extractDataFromVRML('test')
+walls, arena_info = extractDataFromVRML('empty')
 for i in walls:
     print('i', i)
-print('floorsize', floor_size)
-grid = np.zeros([20, 20], dtype=float)
+print('arena_info', arena_info)
+
+grid_size = [int(arena_info['floorSize'][0]/arena_info['floorTileSize'][0]), int(arena_info['floorSize'][1]/arena_info['floorTileSize'][1])]
+print(grid_size)
+grid = np.zeros(grid_size, dtype=float)
 
 for i in walls:
     if i['size'][1] == 0.05: #horizontal lines
