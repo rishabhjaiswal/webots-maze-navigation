@@ -54,18 +54,6 @@ def parse_walls(lines):
             a['floorTileSize'] = [0.5, 0.5]
     return a
 
-# def parse_arena(lines):
-#     point_lines = take('}', lines)
-#     a={}
-#     for i in point_lines:
-#         if 'floorSize' in i:
-#             a['floorSize']=parse_values(i)
-#         if 'floorTileSize' in i:
-#             a['floorTileSize']=parse_values(i)
-#         else:
-#             a['floorTileSize'] = [0.5, 0.5]
-#     return a
-
 def parse_values(line):
     """
     Given a line such as: "translate 5 6 7", return [5.0, 6.0, 7.0]
@@ -262,8 +250,8 @@ nx.draw(G, pos=pos,
         width = 4,
         node_size=400)
 
-figManager = plt.get_current_fig_manager()
-figManager.resize(*figManager.window.maxsize())
+# figManager = plt.get_current_fig_manager()
+# figManager.resize(*figManager.window.maxsize())
 
 plt.show()
 
@@ -283,6 +271,6 @@ pos = {(x,y):(y,-x) for x,y in G.nodes()}
 nx.draw(G, pos, with_labels = True, node_color="#f86e00")
 edge_labels = nx.get_edge_attributes(G, 1)
 nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-figManager = plt.get_current_fig_manager()
-figManager.resize(*figManager.window.maxsize())
+# figManager = plt.get_current_fig_manager()
+# figManager.resize(*figManager.window.maxsize())
 plt.show()
