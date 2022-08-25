@@ -240,8 +240,8 @@ def dist(a, b):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
-path = nx.astar_path(G, (18, 17), (1, 2), heuristic=dist, weight=1)
-length = nx.astar_path_length(G, (18, 17), (13, 4), heuristic=dist, weight=1)
+path = nx.astar_path(G, (18, 18), (0, 3), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (18, 18), (0, 3), heuristic=dist, weight=1)
 print('Path:', path)
 print('Path length:', length)
 

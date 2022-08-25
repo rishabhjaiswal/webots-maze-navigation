@@ -1,0 +1,114 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5532691819370146 0.5588299069387664 0.6177397084772486 2.025912254314143
+  position 0.23172308916471707 -3.8715404211801863 37.97324359300251
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Wall {
+  translation 0 -4 0
+  name "wall horizontal"
+  size 8 0.05 0.4
+}
+Wall {
+  translation 2.25 -2.75 0
+  name "wall horizontal(2)"
+  size 3.5 0.05 0.4
+}
+Wall {
+  translation -0.25 -1 0
+  name "wall horizontal(5)"
+  size 1.5 0.05 0.4
+}
+Wall {
+  translation 4.5 -1 0
+  name "wall horizontal(7)"
+  size 1 0.05 0.4
+}
+Wall {
+  translation -4.5 -1 0
+  name "wall horizontal(8)"
+  size 1 0.05 0.4
+}
+Wall {
+  translation -3.25 -1 0
+  name "wall horizontal(6)"
+  size 1.5 0.05 0.4
+}
+Wall {
+  translation 0.5 4 0
+  name "wall horizontal(1)"
+  size 7 0.05 0.4
+}
+Wall {
+  translation 4 0.5 0
+  name "wall vertical"
+  size 0.05 7 0.4
+}
+Wall {
+  translation -4 0 0
+  name "wall vertical(1)"
+  size 0.05 8 0.4
+}
+Wall {
+  translation -2.5 -3 0
+  name "wall vertical(2)"
+  size 0.05 2 0.4
+}
+Wall {
+  translation -2 -4.5 0
+  name "wall vertical(9)"
+  size 0.05 1 0.4
+}
+Wall {
+  translation -2 4.5 0
+  name "wall vertical(10)"
+  size 0.05 1 0.4
+}
+Wall {
+  translation -2.5 0 0
+  name "wall vertical(7)"
+  size 0.05 2 0.4
+}
+Wall {
+  translation 0.5 0 0
+  name "wall vertical(8)"
+  size 0.05 2 0.4
+}
+Wall {
+  translation -1 -3 0
+  name "wall vertical(3)"
+  size 0.05 2 0.4
+}
+Wall {
+  translation -1 0.75 0
+  name "wall vertical(6)"
+  size 0.05 3.5 0.4
+}
+Wall {
+  translation 2.25 -2.75 0
+  name "wall horizontal(4)"
+  size 3.5 0.05 0.4
+}
+Wall {
+  translation -0.25 2.5 0
+  name "wall horizontal(3)"
+  size 4.5 0.05 0.4
+}
+Wall {
+  translation 2 -1.75 0
+  name "wall vertical(4)"
+  size 0.05 2 0.4
+}
+Wall {
+  translation 2 1.5 0
+  name "wall vertical(5)"
+  size 0.05 2 0.4
+}
