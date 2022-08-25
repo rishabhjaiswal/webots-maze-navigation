@@ -1,0 +1,82 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5555538585665015 0.543872222209507 0.6289379270967557 2.037811126290037
+  position -0.17733180036405383 -3.2339371225368407 28.384088022893607
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+Wall {
+  translation 0 -1.25 0
+  name "wall(3)"
+  size 3.5 0.05 0.4
+}
+Wall {
+  translation -1 -2.25 0
+  name "wall(12)"
+  size 3.5 0.05 0.4
+}
+Wall {
+  translation 0 1.25 0
+  name "wall(7)"
+  size 2 0.05 0.4
+}
+Wall {
+  translation 0 2.25 0
+  name "wall(8)"
+  size 5.5 0.05 0.4
+}
+Wall {
+  translation 0 0.75 0
+  name "wall(2)"
+  size 1.5 0.05 0.4
+}
+Wall {
+  translation 2.25 -0.25 0
+  name "wall(10)"
+  size 1 0.05 0.4
+}
+Wall {
+  translation -0.75 0.25 0
+  size 0.05 1 0.4
+}
+Wall {
+  translation -1.75 0 0
+  name "wall(4)"
+  size 0.05 2.5 0.4
+}
+Wall {
+  translation -2.75 0 0
+  name "wall(11)"
+  size 0.05 4.5 0.4
+}
+Wall {
+  translation 0.75 0.25 0
+  rotation 0 1 0 0
+  name "wall(1)"
+  size 0.05 1 0.4
+}
+Wall {
+  translation 0 1 0
+  rotation 0 1 0 0
+  name "wall(6)"
+  size 0.05 0.5 0.4
+}
+Wall {
+  translation 1.75 -0.5 0
+  rotation 0 1 0 0
+  name "wall(5)"
+  size 0.05 3.5 0.4
+}
+Wall {
+  translation 2.75 1 0
+  rotation 0 1 0 0
+  name "wall(9)"
+  size 0.05 2.5 0.4
+}

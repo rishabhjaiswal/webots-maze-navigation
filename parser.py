@@ -94,7 +94,7 @@ def extractDataFromVRML(root):
 
 
 # main
-walls, arena_info = extractDataFromVRML('empty')
+walls, arena_info = extractDataFromVRML('evaluation2')
 for i in walls:
     print('i', i)
 print('arena_info', arena_info)
@@ -240,15 +240,16 @@ def dist(a, b):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
-path = nx.astar_path(G, (9, 9), (14, 4), heuristic=dist, weight=1)
-length = nx.astar_path_length(G, (9, 9), (14, 4), heuristic=dist, weight=1)
+path = nx.astar_path(G, (18, 17), (1, 2), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (18, 17), (13, 4), heuristic=dist, weight=1)
 print('Path:', path)
 print('Path length:', length)
 
 pos = {(x,y):(y,-x) for x,y in G.nodes()}
-nx.draw(G, pos, with_labels = True, node_color="#f86e00")
+nx.draw(G, pos, with_labels = True, node_color = ["blue" if n in path else "red" for n in G.nodes()]
+)
 edge_labels = nx.get_edge_attributes(G, 1)
 nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 # figManager = plt.get_current_fig_manager()
 # figManager.resize(*figManager.window.maxsize())
-# plt.show()
+plt.show()
