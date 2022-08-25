@@ -112,40 +112,41 @@ for i in walls:
         print('horizontal line i', i)
         if i['translation'][1] >= 0: #positve y
             print('#positve y')
-            print('lower', math.ceil((i['translation'][1]-0.025)/arena_info['floorTileSize'][0]))
-            lower = math.ceil((i['translation'][1]-0.025)/arena_info['floorTileSize'][0])
-            print('upper', math.ceil((i['translation'][1]+0.025)/arena_info['floorTileSize'][0]))
-            upper = math.ceil((i['translation'][1]+0.025)/arena_info['floorTileSize'][0])
+            print('lower', math.ceil((i['translation'][1]-(i['size'][1])/2)/arena_info['floorTileSize'][1]))
+            lower = math.ceil((i['translation'][1]-(i['size'][1])/2)/arena_info['floorTileSize'][1])
+            print('upper', math.ceil((i['translation'][1]+(i['size'][1])/2)/arena_info['floorTileSize'][1]))
+            upper = math.ceil((i['translation'][1]+(i['size'][1])/2)/arena_info['floorTileSize'][1])
             if upper == lower: #only one cell has wall passing through
                 print('upper', upper)
                 right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
                 left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
 
-                y_index_left = 10+left_x
-                y_index_right = 10+right_x
-                x_index = 10 - upper
+                y_index_left = int(arena_info['floorSize'][0])+left_x
+                y_index_right = int(arena_info['floorSize'][0])+right_x
+                x_index = int(arena_info['floorSize'][1]) - upper
                 for i in range(y_index_left, y_index_right+1):
                     grid[x_index][i] = 1
                 # print(grid)
             else:#two cell has wall passing through
+
                 right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
                 left_x = floor(((i['translation'][0]-i['size'][0]/2)/arena_info['floorTileSize'][0]))
-
-                y_index_left = 10+left_x
-                y_index_right = 10+right_x
-                x_index_upper = 10 - upper
-                x_index_lower = 10 - lower
+                
+                y_index_left = int(arena_info['floorSize'][0])+left_x
+                y_index_right = int(arena_info['floorSize'][0])+right_x
+                x_index_upper = int(arena_info['floorSize'][1]) - upper
+                x_index_lower = int(arena_info['floorSize'][1]) - lower
                 for i in range(y_index_left, y_index_right+1):
                     grid[x_index_lower][i] = 1
                     grid[x_index_upper][i] = 1
                 # print(grid)
             
         else: #negative y
-            print('negative y')
-            print('lower', math.ceil((i['translation'][1]-0.025)/arena_info['floorTileSize'][0]))
-            lower = math.ceil((i['translation'][1]-0.025)/arena_info['floorTileSize'][0])
-            print('upper', math.ceil((i['translation'][1]+0.025)/arena_info['floorTileSize'][0]))
-            upper = math.ceil((i['translation'][1]+0.025)/arena_info['floorTileSize'][0])
+            print('negative y', i)
+            print('lower', math.ceil((i['translation'][1]-(i['size'][1]/2))/arena_info['floorTileSize'][1]))
+            lower = math.ceil((i['translation'][1]-(i['size'][1]/2))/arena_info['floorTileSize'][1])
+            print('upper', math.ceil((i['translation'][1]+(i['size'][1]/2))/arena_info['floorTileSize'][1]))
+            upper = math.ceil((i['translation'][1]+(i['size'][1]/2))/arena_info['floorTileSize'][1])
             if upper == lower: #only one cell has wall passing through
                 print('upper', upper)
                 right_x = ceil((i['translation'][0]+i['size'][0]/2)/arena_info['floorTileSize'][0])
@@ -174,15 +175,15 @@ for i in walls:
 
         if i['translation'][0] >= 0: #positve x
 
-            left = math.ceil((i['translation'][0]-0.025)/0.5)
-            right = math.ceil((i['translation'][0]+0.025)/0.5)
+            left = math.ceil((i['translation'][0]-i['size'][0])/arena_info['floorTileSize'][0])
+            right = math.ceil((i['translation'][0]+i['size'][0])/arena_info['floorTileSize'][0])
             print('#positve x', i, left, right)
             if right == left: #only one cell has wall passing through
                 print('right', right)
                 print((i['translation'][1]+i['size'][1]/2))
-                up_y = ceil((i['translation'][1]+i['size'][1]/2)/0.5)
+                up_y = ceil((i['translation'][1]+i['size'][1]/2)/arena_info['floorTileSize'][1])
                 print((i['translation'][1]-i['size'][1]/2))
-                down_y = floor(((i['translation'][1]-i['size'][1]/2)/0.5))
+                down_y = floor(((i['translation'][1]-i['size'][1]/2)/arena_info['floorTileSize'][1]))
                 print('up_y', up_y)
                 print('down_y', down_y)
                 x_index_up = 10-up_y
@@ -197,9 +198,9 @@ for i in walls:
             
                 print('right', right)
                 print((i['translation'][1]+i['size'][1]/2))
-                up_y = ceil((i['translation'][1]+i['size'][1]/2)/0.5)
+                up_y = ceil((i['translation'][1]+i['size'][1]/2)/arena_info['floorTileSize'][1])
                 print((i['translation'][1]-i['size'][1]/2))
-                down_y = floor(((i['translation'][1]-i['size'][1]/2)/0.5))
+                down_y = floor(((i['translation'][1]-i['size'][1]/2)/arena_info['floorTileSize'][1]))
                 print('up_y', up_y)
                 print('down_y', down_y)
                 x_index_up = 10-up_y
@@ -214,15 +215,15 @@ for i in walls:
                 # print(grid)
         
         else: #negative x
-            left = math.ceil((i['translation'][0]-0.025)/0.5)
-            right = math.ceil((i['translation'][0]+0.025)/0.5)
+            left = math.ceil((i['translation'][0]-0.025)/arena_info['floorTileSize'][0])
+            right = math.ceil((i['translation'][0]+0.025)/arena_info['floorTileSize'][0])
             print('#positve x', i, left, right)
             if right == left: #only one cell has wall passing through
                 print('right', right)
                 print((i['translation'][1]+i['size'][1]/2))
-                up_y = ceil((i['translation'][1]+i['size'][1]/2)/0.5)
+                up_y = ceil((i['translation'][1]+i['size'][1]/2)/arena_info['floorTileSize'][1])
                 print((i['translation'][1]-i['size'][1]/2))
-                down_y = floor(((i['translation'][1]-i['size'][1]/2)/0.5))
+                down_y = floor(((i['translation'][1]-i['size'][1]/2)/arena_info['floorTileSize'][1]))
                 print('up_y', up_y)
                 print('down_y', down_y)
                 x_index_up = 10-up_y
@@ -237,9 +238,9 @@ for i in walls:
             
                 print('right', right)
                 print((i['translation'][1]+i['size'][1]/2))
-                up_y = ceil((i['translation'][1]+i['size'][1]/2)/0.5)
+                up_y = ceil((i['translation'][1]+i['size'][1]/2)/arena_info['floorTileSize'][1])
                 print((i['translation'][1]-i['size'][1]/2))
-                down_y = floor(((i['translation'][1]-i['size'][1]/2)/0.5))
+                down_y = floor(((i['translation'][1]-i['size'][1]/2)/arena_info['floorTileSize'][1]))
                 print('up_y', up_y)
                 print('down_y', down_y)
                 x_index_up = 10-up_y
@@ -298,4 +299,4 @@ edge_labels = nx.get_edge_attributes(G, 1)
 nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 # figManager = plt.get_current_fig_manager()
 # figManager.resize(*figManager.window.maxsize())
-plt.show()
+# plt.show()
