@@ -8,7 +8,15 @@ from matplotlib import pyplot as plt
 import numpy as np
 import networkx as nx
 
+# start_x, start_y = input("Enter starting point coordiates:").split
+# print("Username is: " + start_x, start_y)
 
+  
+# taking two inputs at a time
+start_x, start_y = map(int, input("Enter starting point coordiates: ").split())
+end_x, end_y = map(int, input("Enter starting point coordiates: ").split())
+
+print(type(start_x))
 np.set_printoptions(threshold=sys.maxsize)
 
 def skip_pass(marker, lines):
@@ -240,8 +248,8 @@ def dist(a, b):
     return ((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5
 
 nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
-path = nx.astar_path(G, (18, 18), (0, 3), heuristic=dist, weight=1)
-length = nx.astar_path_length(G, (18, 18), (0, 3), heuristic=dist, weight=1)
+path = nx.astar_path(G, (start_x, start_y), (end_x, end_y), heuristic=dist, weight=1)
+length = nx.astar_path_length(G, (start_x, start_y), (end_x, end_y), heuristic=dist, weight=1)
 print('Path:', path)
 print('Path length:', length)
 

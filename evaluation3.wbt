@@ -12,6 +12,9 @@ TexturedBackgroundLight {
 RectangleArena {
   floorSize 10 10
 }
+Pioneer3dx {
+  translation 4 -3.5 0.0975
+}
 Wall {
   translation 0 -4 0
   name "wall horizontal"

@@ -1,7 +1,8 @@
 from matplotlib import pyplot as plt
 import numpy as np
 import networkx as nx
-
+username = input("Enter username:")
+print("Username is: " + username)
 # lines to 2d array
 with open('myfile.txt') as f:
     a = np.array([list(map(int,i.split())) for i in f.readlines()])
