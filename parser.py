@@ -13,10 +13,10 @@ import networkx as nx
 
   
 # taking two inputs at a time
+file_name = input("Enter file name : ")
 start_x, start_y = map(int, input("Enter starting point coordiates: ").split())
 end_x, end_y = map(int, input("Enter starting point coordiates: ").split())
 
-print(type(start_x))
 np.set_printoptions(threshold=sys.maxsize)
 
 def skip_pass(marker, lines):
@@ -102,13 +102,12 @@ def extractDataFromVRML(root):
 
 
 # main
-walls, arena_info = extractDataFromVRML('evaluation2')
+walls, arena_info = extractDataFromVRML(file_name)
 for i in walls:
     print('i', i)
-print('arena_info', arena_info)
 
 grid_size = [int(arena_info['floorSize'][0]/arena_info['floorTileSize'][0]), int(arena_info['floorSize'][1]/arena_info['floorTileSize'][1])]
-print(grid_size)
+
 grid = np.zeros(grid_size, dtype=float)
 for i in walls:
 
@@ -251,13 +250,19 @@ nx.set_edge_attributes(G, {e: e[1][0] * 2 for e in G.edges()}, 1)
 path = nx.astar_path(G, (start_x, start_y), (end_x, end_y), heuristic=dist, weight=1)
 length = nx.astar_path_length(G, (start_x, start_y), (end_x, end_y), heuristic=dist, weight=1)
 print('Path:', path)
-print('Path length:', length)
+print('path length A* : ', length)
+
+
 
 pos = {(x,y):(y,-x) for x,y in G.nodes()}
 nx.draw(G, pos, with_labels = True, node_color = ["blue" if n in path else "red" for n in G.nodes()]
 )
 edge_labels = nx.get_edge_attributes(G, 1)
 nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-# figManager = plt.get_current_fig_manager()
-# figManager.resize(*figManager.window.maxsize())
 plt.show()
+
+path_dijkstra = nx.shortest_path_length(G, source=(start_x, start_y), target=(end_x, end_y), method='dijkstra', weight=1)
+print('path length dijkstra : ', path_dijkstra)
+
+path_bellman_ford = nx.shortest_path_length(G, source=(start_x, start_y), target=(end_x, end_y), method='bellman-ford', weight=1)
+print('path length bellman-ford : ', path_bellman_ford)
